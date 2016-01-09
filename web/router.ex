@@ -14,6 +14,9 @@ defmodule MasonMoneyWallet.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/profile", ProfileController, :edit
+    post "/profile", ProfileController, :update
+    get "/transactions", TransactionController, :index
   end
 
   scope "/auth", MasonMoneyWallet do

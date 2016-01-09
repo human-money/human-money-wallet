@@ -16,7 +16,7 @@ defmodule Facebook do
   # Public API
 
   def client do
-    Application.get_env(:oauth2_example, Facebook)
+    Application.get_env(:mason_money_wallet, Facebook)
     |> Keyword.merge(config())
     |> OAuth2.Client.new()
   end

@@ -39,7 +39,7 @@ defmodule MasonMoneyWallet.AuthController do
     conn
     |> put_session(:current_user, user)
     |> put_session(:access_token, token.access_token)
-    |> redirect(to: "/")
+    |> redirect(to: "/profile")
   end
 
   defp authorize_url!("github"),   do: GitHub.authorize_url!
