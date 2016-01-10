@@ -27,19 +27,26 @@ defmodule MasonMoneyWallet.AuthController do
     token = get_token!(provider, code)
 
     # Request the user's data with the access token
-    user = get_user!(provider, token)
+    oauth_user = get_user!(provider, token)
 
-    # Store the user in the session under `:current_user` and redirect to /.
-    # In most cases, we'd probably just store the user's ID that can be used
-    # to fetch from the database. In this case, since this example app has no
-    # database, I'm just storing the user map.
-    #
-    # If you need to make additional resource requests, you may want to store
-    # the access token as well.
-    conn
-    |> put_session(:current_user, user)
-    |> put_session(:access_token, token.access_token)
-    |> redirect(to: "/profile")
+    if Repo.get_by(MasonMoneyWallet.User, facebook_id: oauth_user[:id]) do
+      user = Repo.get_by(MasonMoneyWallet.User, facebook_id: oauth_user[:id])
+      conn
+        |> put_session(:current_user_id, user.id)
+        |> redirect(to: "/transactions")
+    else
+      user = %MasonMoneyWallet.User{}
+      {:nacl_box_keypair, public_key, private_key} = :nacl.box_keypair()
+
+      keys = %{private_key: Base.encode16(private_key)}
+      user = Map.merge(user, keys)
+      user = Map.merge(user, %{facebook_id: oauth_user[:id]})
+      user = MasonMoneyWallet.Repo.insert! user
+
+      conn
+      |> put_session(:current_user_id, user.id)
+      |> redirect(to: "/profile")
+    end
   end
 
   defp authorize_url!("github"),   do: GitHub.authorize_url!
@@ -62,6 +69,6 @@ defmodule MasonMoneyWallet.AuthController do
   end
   defp get_user!("facebook", token) do
     {:ok, %{body: user}} = OAuth2.AccessToken.get(token, "/me", fields: "id,name")
-    %{name: user["name"], avatar: "https://graph.facebook.com/#{user["id"]}/picture"}
+    %{id: user["id"], name: user["name"], avatar: "https://graph.facebook.com/#{user["id"]}/picture"}
   end
 end

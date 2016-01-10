@@ -37,7 +37,8 @@ defmodule MasonMoneyWallet.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:oauth2, "~> 0.5"},
-     {:dotenv, "~> 2.0.0"}
+     {:dotenv, "~> 2.0.0"},
+     {:nacl, github: "tonyg/erlang-nacl"},
     ]
   end
 

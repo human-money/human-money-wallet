@@ -1,6 +1,6 @@
 <h1>Choose your username</h1>
 <form method="POST">
 <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
-<input type="text"></input> $mason.money
+<input type="text" name="username"></input> $mason.money
 <input type="submit" value="Save"></input>
 </form>
