@@ -6,6 +6,7 @@ defmodule MasonMoneyWallet.Repo.Migrations.CreateUser do
       add :username, :string
       add :facebook_id, :string
       add :private_key, :string
+      add :public_key, :string
 
       timestamps
     end

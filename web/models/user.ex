@@ -5,6 +5,7 @@ defmodule MasonMoneyWallet.User do
     field :username, :string
     field :facebook_id, :string
     field :private_key, :string
+    field :public_key, :string
 
     timestamps
   end

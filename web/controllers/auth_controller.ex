@@ -38,7 +38,7 @@ defmodule MasonMoneyWallet.AuthController do
       user = %MasonMoneyWallet.User{}
       {:nacl_box_keypair, public_key, private_key} = :nacl.box_keypair()
 
-      keys = %{private_key: Base.encode16(private_key)}
+      keys = %{private_key: String.downcase(Base.encode16(private_key)), public_key: String.downcase(Base.encode16(public_key))}
       user = Map.merge(user, keys)
       user = Map.merge(user, %{facebook_id: oauth_user[:id]})
       user = MasonMoneyWallet.Repo.insert! user
