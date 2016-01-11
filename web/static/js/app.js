@@ -20,4 +20,17 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 
 import socket from "./socket"
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/app';
+import { Provider } from 'react-redux'
+
+import store from './store';
+ReactDOM.render(
+<Provider store={store}>
+<App />
+</Provider>
+, document.getElementById("root"));
+
+
 
