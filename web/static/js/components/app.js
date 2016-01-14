@@ -1,25 +1,24 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react'
 import Transaction from './transaction';
-import { increment } from '../actionsCreators';
+import { addTransaction, fetchTransactions } from '../actionsCreators';
 import { connect } from 'react-redux';
 
-class App extends React.Component {
+class App extends Component {
   componentDidMount() {
-    fetch('http://localhost:4000/transactions')
-      .then(function(response){
-        return response.json()
-    }).then((response) => {
-      response.transactions.forEach( (transaction) => {
-        console.log(transaction);
-      })
-     });
+    this.props.fetchTransactions();
   }
+
   render() {
+    let transactions = [];
+    this.props.transactions.forEach((transaction, index) => {
+      transactions.push(<Transaction key={index} amount={transaction.amount} to={transaction.to_address} from={transaction.from_address}  />)
+    })
     return (
     <div>
-      <button onClick={this.props.onIncrement}>
-        {this.props.value}
+      <button onClick={() => this.props.addTransaction({to: "mason", from: "bob", amount: 1})}>
+        Add
       </button>
+      {transactions}
       <Transaction amount="1.00" from="mason$mason.money" to="bob$mason.money"/>
     </div>
     );
@@ -28,13 +27,14 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    value: state.counter
+    transactions: state.transactions
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onIncrement: () => dispatch(increment())
+    fetchTransactions: () => dispatch(fetchTransactions()),
+    addTransaction: (params) => dispatch(addTransaction(params))
   }
 }
 
