@@ -10,6 +10,15 @@ defmodule MasonMoneyWallet.Router do
     plug :assign_current_user
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
+  scope "/api", MasonMoneyWallet do
+    get "/current_user", CurrentUserController, :show
+    get "/users/:user_id", UserController, :show
+  end
+
   scope "/", MasonMoneyWallet do
     pipe_through :browser # Use the default browser stack
 

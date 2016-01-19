@@ -9,7 +9,7 @@ defmodule MasonMoneyWallet.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :mason_money_wallet, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt mason_money.proto)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
