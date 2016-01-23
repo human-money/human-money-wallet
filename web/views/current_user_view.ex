@@ -4,6 +4,6 @@ defmodule MasonMoneyWallet.CurrentUserView do
 
   def render("show.json", %{data: data}) do
     data
-    |> Map.take([:public_key, :private_key])
+    |> Map.take([:username, :public_key, :private_key])
   end
 end

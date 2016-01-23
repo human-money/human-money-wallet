@@ -29,14 +29,17 @@ class App extends Component {
 
   createTransaction(e){
     let amount = parseFloat(this.state.amount) * 10000;
+    let to = this.state.to;
+
     e.preventDefault()
-    fetch(`/api/users/${this.state.to}`)
+    fetch(`/api/users/${to}`)
       .then(response => response.json())
       .then(json => {
         let transaction = {}
         transaction.to_public_key = json.public_key
-        transaction.to_address=`${this.state.to}$mason.money`
+        transaction.to_address=`${to}$mason.money`
         transaction.from_public_key = this.props.user.public_key
+        transaction.from_address = `${this.props.user.username}$mason.money`
         transaction.amount = amount;
         this.props.createTransaction(transaction)
       })
@@ -44,10 +47,9 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state)
     let transactions = [];
-    this.props.transactions.reverse().forEach((transaction, index) => {
-    transactions.push(<Transaction key={index} amount={transaction.amount/10000} to={transaction.to_address} from={transaction.from_address}  />)
+    this.props.transactions.forEach((transaction, index) => {
+    transactions.push(<Transaction key={transaction.id} amount={transaction.amount/10000} to={transaction.to_address} from={transaction.from_address}  />)
     })
     return (
     <div>

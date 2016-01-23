@@ -10,7 +10,6 @@ function increment() {
 function createTransaction(params) {
   return (dispatch, getState) => {
     ProtoBuf.loadProtoFile("/mason_money.proto", function(err, builder) {
-      console.log(err)
       builder.build()
       let Transaction = builder.result.protobufs.Transaction
       let t = new Uint8Array((new Transaction(params)).encode().buffer);
