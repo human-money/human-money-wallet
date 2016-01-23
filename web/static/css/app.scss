@@ -1,0 +1,8 @@
+@import "vendor/normalize";
+@import "boot";
+@import "base/base";
+
+.container {
+  justify-content: center;
+  display: flex;
+}

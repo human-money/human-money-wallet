@@ -1,0 +1,13 @@
+@import "boot";
+
+.hamburger {
+  @include size(1rem);
+  color: $action-color;
+  cursor: pointer;
+  position: relative;
+
+  svg {
+    @include size(100%);
+    fill: currentColor;
+  }
+}

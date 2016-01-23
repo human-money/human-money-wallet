@@ -52,7 +52,7 @@ class App extends Component {
     transactions.push(<Transaction key={transaction.id} amount={transaction.amount/10000} to={transaction.to_address} from={transaction.from_address}  />)
     })
     return (
-    <div>
+    <div class="container">
       <form onSubmit={this.createTransaction.bind(this)} >
       <label>Pay to:</label>
       <input  value={this.state.to} onChange={this.toChanged.bind(this)} />

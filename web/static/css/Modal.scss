@@ -1,0 +1,49 @@
+@import "boot";
+
+.modal-overlay {
+  @include position(fixed, 0);
+  align-items: center;
+  background-color: rgba($dark-gray, 0.9);
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  overflow: auto;
+  transition: opacity $base-transition, visibility 0s $base-duration;
+  visibility: hidden;
+
+  &.is-open {
+    opacity: 1;
+    transition: opacity $base-transition, visibility 0s;
+    visibility: visible;
+  }
+}
+
+.modal {
+  background-color: white;
+  border-radius: $base-border-radius;
+  box-shadow: 0 1px 2px black;
+  margin: $base-spacing;
+  min-width: 16rem;
+  padding: $base-spacing;
+}
+
+.modal-header {
+  align-items: flex-end;
+  box-shadow: 0 1px $base-border-color;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $base-spacing;
+  padding-bottom: $base-spacing;
+
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+.modal-close {
+  @include size($base-spacing);
+  cursor: pointer;
+  font-size: $base-spacing;
+  line-height: $base-spacing;
+  text-align: center;
+}
