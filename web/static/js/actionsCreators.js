@@ -1,6 +1,20 @@
 import ProtoBuf from 'protobufjs';
 import nacl from 'tweetnacl';
 
+export function openModal(target) {
+  return {
+    type: 'OPEN_MODAL',
+    target: target,
+  }
+}
+
+export function closeModal(target) {
+  return {
+    type: 'CLOSE_MODAL',
+    target: target,
+  }
+}
+
 function increment() {
   return {
     type: 'INCREMENT',
@@ -71,5 +85,7 @@ export {
   addTransaction,
   createTransaction,
   fetchTransactions,
-  fetchUser
+  fetchUser,
+  openModal,
+  closeModal
 };

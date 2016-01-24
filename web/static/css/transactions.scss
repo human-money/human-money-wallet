@@ -1,0 +1,14 @@
+.transactions {
+  font-size: 2em;
+  li:nth-child(even) {
+    background-color: #efef;
+  }
+
+  .credit i {
+    color: #468847;
+  }
+
+  .debit i {
+    color: #d9534f;
+  }
+}

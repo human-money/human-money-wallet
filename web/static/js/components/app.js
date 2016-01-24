@@ -1,17 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import Transaction from './transaction';
+import Modal from './Modal';
 import {
   addTransaction,
   createTransaction,
   fetchTransactions,
-  fetchUser
+  fetchUser,
+  openModal,
+  closeModal,
 } from '../actionsCreators';
 import { connect } from 'react-redux';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {amount: 0, to: ""};
+    this.state = {amount: "", to: ""};
   }
 
   componentDidMount() {
@@ -41,6 +44,7 @@ class App extends Component {
         transaction.from_public_key = this.props.user.public_key
         transaction.from_address = `${this.props.user.username}$mason.money`
         transaction.amount = amount;
+        this.props.closeModal('pay')
         this.props.createTransaction(transaction)
       })
     this.setState({amount:"", to:""})
@@ -52,18 +56,26 @@ class App extends Component {
     transactions.push(<Transaction key={transaction.id} amount={transaction.amount/10000} to={transaction.to_address} from={transaction.from_address}  />)
     })
     return (
-    <div class="container">
-      <form onSubmit={this.createTransaction.bind(this)} >
-      <label>Pay to:</label>
-      <input  value={this.state.to} onChange={this.toChanged.bind(this)} />
-      <br />
-      <label>Amount</label>
-      <input  value={this.state.amount} onChange={this.amountChanged.bind(this)} />
-      <button onClick={this.createTransaction.bind(this)}>
-        Pay
+    <div>
+      <button onClick={(e) => this.props.openModal("pay")}>
+        Send Money
       </button>
-      </form>
-      {transactions}
+      <ol className="transactions">
+        {transactions}
+      </ol>
+      <Modal title="Send Money" id="pay">
+        <form onSubmit={this.createTransaction.bind(this)} >
+          <label>Pay to:</label>
+          <input  placeholder="Username, etc..." value={this.state.to} onChange={this.toChanged.bind(this)} />
+          <span>Username, @twitter_handle, Email, Phone or Mason Money Address</span>
+          <br />
+          <label>Amount</label>
+          <input  placeholder="0.00" value={this.state.amount} onChange={this.amountChanged.bind(this)} />
+          <button onClick={this.createTransaction.bind(this)}>
+            Send
+          </button>
+        </form>
+     </Modal>
     </div>
     );
   }
@@ -81,7 +93,9 @@ function mapDispatchToProps(dispatch) {
     fetchUser: () => dispatch(fetchUser()),
     fetchTransactions: () => dispatch(fetchTransactions()),
     addTransaction: (params) => dispatch(addTransaction(params)),
-    createTransaction: (params) => dispatch(createTransaction(params))
+    createTransaction: (params) => dispatch(createTransaction(params)),
+    openModal: (params) => dispatch(openModal(params)),
+    closeModal: (params) => dispatch(closeModal(params))
   }
 }
 

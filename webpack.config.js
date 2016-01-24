@@ -42,7 +42,7 @@ module.exports = {
           "style",
           "css!sass?includePaths[]=" + __dirname +  "/node_modules"
         )
-      }
+      },
     ]
   },
 

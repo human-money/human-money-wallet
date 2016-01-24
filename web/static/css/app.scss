@@ -1,6 +1,8 @@
 @import "vendor/normalize";
 @import "boot";
 @import "base/base";
+@import "Modal";
+@import "transactions";
 
 .container {
   justify-content: center;

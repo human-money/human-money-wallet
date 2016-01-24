@@ -4,20 +4,20 @@ export default class Transaction extends React.Component {
   render() {
     if(this.props.from) {
       return (
-      <div>
-        <span>{this.props.from}</span>
+      <li className="debit">
+        <i className="fa fa-arrow-circle-left"></i>
         <strong> paid </strong>
-        <span>{this.props.to}</span>
-        <strong> ${this.props.amount}</strong>
-      </div>
+        <span> {this.props.to} </span>
+        <strong>${this.props.amount}</strong>
+      </li>
       );
     } else {
       return (
-      <div>
-        <span>{this.props.to}</span>
+      <li className="credit">
+        <i className="fa fa-arrow-circle-right"></i>
         <strong> minted </strong>
-        <strong> ${this.props.amount}</strong>
-      </div>
+        <strong>${this.props.amount}</strong>
+      </li>
       );
     }
   }

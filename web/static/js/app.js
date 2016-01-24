@@ -1,6 +1,7 @@
 import "deps/phoenix_html/web/static/js/phoenix_html"
 import Socket from "./socket"
 
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
@@ -12,3 +13,4 @@ ReactDOM.render(
 <App />
 </Provider>
 , document.getElementById("root"));
+
