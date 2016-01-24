@@ -1,7 +1,8 @@
 .transactions {
   font-size: 2em;
+
   li:nth-child(even) {
-    background-color: #efef;
+    background-color: #efefef;
   }
 
   .credit i {
@@ -10,5 +11,10 @@
 
   .debit i {
     color: #d9534f;
+  }
+
+  .date {
+    float: right;
+    color: #555;
   }
 }

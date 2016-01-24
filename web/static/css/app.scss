@@ -4,7 +4,70 @@
 @import "Modal";
 @import "transactions";
 
+html, body {
+  height: 100%;
+}
+
+.logo {
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 3em;
+  letter-spacing: -12px;
+  margin-right: auto;
+}
+
+.header {
+  display: flex;
+  width: 1170px;
+  border-bottom: 1px solid #ddd;
+
+  nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    > * {
+      margin: 10px;
+    }
+  }
+}
+
+
+.balance {
+  font-size: 20px;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+
+  .sidebar {
+    border-right: 1px solid #ddd;
+    padding: 20px 0;
+    flex: 1 0 0;
+
+    button {
+      width: 80%;
+    }
+    button, .balance {
+      margin: 10px 0;
+    }
+  }
+
+  .content {
+    padding: 20px;
+    flex: 4 0 0;
+
+    h1 {
+      font-size: 2em;
+    }
+  }
+}
 .container {
   justify-content: center;
   display: flex;
+  height: 100%;
+}
+.inner{
+  height: 100%;
 }

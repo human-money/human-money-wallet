@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component, PropTypes } from 'react'
 import Transaction from './transaction';
 import Modal from './Modal';
@@ -50,19 +51,50 @@ class App extends Component {
     this.setState({amount:"", to:""})
   }
 
+  balance() {
+    let bal = _.sumBy(this.props.transactions, (transaction) => {
+      if(transaction.to_public_key == this.props.user.public_key) {
+        return (transaction.amount / 10000);
+      } else {
+        return -((transaction.amount / 10000)+0.001);
+      }
+    });
+
+    if(bal){
+      return bal.toFixed(2)
+    }
+  }
+
   render() {
     let transactions = [];
     this.props.transactions.forEach((transaction, index) => {
-    transactions.push(<Transaction key={transaction.id} amount={transaction.amount/10000} to={transaction.to_address} from={transaction.from_address}  />)
+    transactions.push(<Transaction key={transaction.id} amount={transaction.amount/10000} to={transaction.to_address} from={transaction.from_address}  createdAt={transaction.inserted_at} />)
     })
     return (
-    <div>
-      <button onClick={(e) => this.props.openModal("pay")}>
-        Send Money
-      </button>
-      <ol className="transactions">
-        {transactions}
-      </ol>
+    <div className="inner">
+      <header className="header">
+        <div className="logo">MM</div>
+        <nav>
+          <a href="/sign_out">Sign Out <i className="fa fa-sign-out"></i></a>
+        </nav>
+      </header>
+      <div className="main">
+        <div className="sidebar">
+          <button onClick={(e) => this.props.openModal("pay")}>
+            Send Money
+          </button>
+          <button onClick={(e) => this.props.openModal("request")}>
+            Request Money
+          </button>
+          <div className="balance"><strong>Balance</strong> ${this.balance()}</div>
+        </div>
+        <div className="content">
+          <h1>Transactions</h1>
+          <ol className="transactions">
+            {transactions}
+          </ol>
+        </div>
+      </div>
       <Modal title="Send Money" id="pay">
         <form onSubmit={this.createTransaction.bind(this)} >
           <label>Pay to:</label>
@@ -75,6 +107,8 @@ class App extends Component {
             Send
           </button>
         </form>
+     </Modal>
+     <Modal title="Request Money" id="request">
      </Modal>
     </div>
     );
