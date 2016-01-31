@@ -12,7 +12,7 @@
     }
   },
   "buildpacks": [
-    {"url": "https://github.com/envato/heroku-buildpack-libsodium"},
+    {"url": "https://github.com/mason-money/heroku-buildpack-libsodium"},
     {"url": "https://github.com/HashNuke/heroku-buildpack-elixir"},
     {"url": "https://github.com/gjaldon/phoenix-static-buildpack"}
   ]
