@@ -67,3 +67,8 @@ config :mason_money_wallet, MasonMoneyWallet.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
+
+config :mason_money_wallet, Facebook,
+  client_id: System.get_env("FACEBOOK_CLIENT_ID"),
+  client_secret: System.get_env("FACEBOOK_CLIENT_SECRET"),
+  redirect_uri: "http://#{System.get_env("HOST")}/auth/facebook/callback"

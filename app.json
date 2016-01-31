@@ -6,9 +6,18 @@
     "postdeploy": "mix ecto.migrate"
   },
   "env": {
+    "HOST": {
+      "description": "Hostname"
+    },
     "MASON_MONEY_NODE_ADDRESS": {
       "description": "The address of the Mason Money node use as a relay",
       "value": "ws://testnet1.mason.money/"
+    },
+    "FACEBOOK_CLIENT_ID": {
+      description: "Facebook app client ID"
+    },
+    "FACEBOOK_CLIENT_SECRET": {
+      description: "Facebook app client secret"
     }
   },
   "buildpacks": [
