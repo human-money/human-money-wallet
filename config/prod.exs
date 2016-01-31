@@ -62,4 +62,5 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
+config :mason_money_wallet, :mason_money_node_address, System.get_env("MASON_MONEY_NODE_ADDRESS")
 import_config "prod.secret.exs"

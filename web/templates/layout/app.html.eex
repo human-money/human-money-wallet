@@ -10,7 +10,8 @@
     <title>Hello MasonMoneyWallet!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-</head>
+    <meta property="mason_money_node_address" content="<%= Application.get_env(:mason_money_wallet, :mason_money_node_address) %>" />
+  </head>
 
   <body>
     <div class="container" id="root">

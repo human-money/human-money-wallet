@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux'
-import todos from './todos'
 import counter from './counter'
-import transactions from './transactions'
+import error from './errors'
 import modals from './modals'
+import todos from './todos'
+import transactions from './transactions'
 import user from './user'
 
 export default combineReducers({
-  todos,
   counter,
-  transactions,
+  error,
   modals,
+  todos,
+  transactions,
   user,
 })

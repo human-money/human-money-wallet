@@ -1,5 +1,6 @@
 import ProtoBuf from 'protobufjs';
 import nacl from 'tweetnacl';
+import request from './request';
 
 export function openModal(target) {
   return {
@@ -31,7 +32,7 @@ function createTransaction(params) {
       params.signature = nacl.util.encodeBase64(nacl.sign.detached(t,
         new TextEncoder('utf-8').encode(getState().user.private_key)
         ));
-      fetch('http://localhost:4000/transactions',
+      request('http://localhost:4000/transactions',
         {
           method: "post",
           headers: {
@@ -51,6 +52,13 @@ function addTransaction(params) {
   })
 }
 
+function receiveErrors(errors) {
+  return {
+    type: 'RECIEVE_ERRORS',
+    errors
+  }
+}
+
 function receiveTransactions(transactions) {
   return {
     type: 'RECIEVE_TRANSACTIONS',
@@ -67,22 +75,21 @@ function receiveUser(user) {
 
 function fetchTransactions() {
   return dispatch => {
-    return fetch(`http://localhost:4000/transactions`)
-      .then(response => response.json())
+    return request(`http://localhost:4000/transactions`)
       .then(json => dispatch(receiveTransactions(json.transactions)))
   }
 }
 
 function fetchUser() {
   return dispatch => {
-    return fetch(`/api/current_user`, {credentials: 'same-origin'})
-      .then(response => response.json())
+    return request(`/api/current_user`, {credentials: 'same-origin'})
       .then(json => dispatch(receiveUser(json)))
   }
 }
 export {
   increment,
   addTransaction,
+  receiveErrors,
   createTransaction,
   fetchTransactions,
   fetchUser,
