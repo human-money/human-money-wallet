@@ -1,0 +1,18 @@
+{
+  "name": "Mason Money Wallet",
+  "description": "Mason Money is stable cryptocurrency built for everyone",
+  "website": "http://wallet.mason.money/",
+  "scripts": {
+    "postdeploy": "mix ecto.migrate"
+  },
+  "env": {
+    "MASON_MONEY_NODE_ADDRESS": {
+      "description": "The address of the Mason Money node use as a relay",
+      "value": "ws://testnet1.mason.money/"
+    }
+  },
+  "buildpacks": [
+    {"url": "https://github.com/HashNuke/heroku-buildpack-elixir"},
+    {"url": "https://github.com/gjaldon/phoenix-static-buildpack"}
+  ]
+}
