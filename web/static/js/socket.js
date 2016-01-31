@@ -1,4 +1,4 @@
-import {Socket} from "deps/phoenix/web/static/js/phoenix"
+import {Socket} from "phoenix-socket"
 import store from "./store";
 import {addTransaction} from "./actionsCreators";
 import $ from 'jquery';
