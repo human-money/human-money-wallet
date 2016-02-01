@@ -63,6 +63,7 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 config :mason_money_wallet, :mason_money_node_address, System.get_env("MASON_MONEY_NODE_ADDRESS")
+config :mason_money_wallet, :mason_money_socket_address, System.get_env("MASON_MONEY_SOCKET_ADDRESS")
 config :mason_money_wallet, MasonMoneyWallet.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),

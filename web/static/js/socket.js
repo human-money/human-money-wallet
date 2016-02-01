@@ -3,7 +3,7 @@ import store from "./store";
 import {addTransaction} from "./actionsCreators";
 import $ from 'jquery';
 
-let server = $('meta[property="mason_money_node_address"]').attr('content');
+let server = $('meta[property="mason_money_socket_address"]').attr('content');
 let socket = new Socket(`${server}/socket`, {params: {token: window.userToken}})
 
 socket.connect()

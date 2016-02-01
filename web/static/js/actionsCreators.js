@@ -1,7 +1,9 @@
 import ProtoBuf from 'protobufjs';
 import nacl from 'tweetnacl';
 import request from './request';
+import $ from 'jquery';
 
+let server = $('meta[property="mason_money_node_address"]').attr('content');
 export function openModal(target) {
   return {
     type: 'OPEN_MODAL',
@@ -32,7 +34,7 @@ function createTransaction(params) {
       params.signature = nacl.util.encodeBase64(nacl.sign.detached(t,
         new TextEncoder('utf-8').encode(getState().user.private_key)
         ));
-      request('http://localhost:4000/transactions',
+      request(`${server}/transactions`,
         {
           method: "post",
           headers: {
@@ -75,7 +77,7 @@ function receiveUser(user) {
 
 function fetchTransactions() {
   return dispatch => {
-    return request(`http://localhost:4000/transactions`)
+    return request(`${server}/transactions`)
       .then(json => dispatch(receiveTransactions(json.transactions)))
   }
 }
