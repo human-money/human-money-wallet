@@ -12,7 +12,7 @@ import {
 } from '../actionsCreators';
 import { connect } from 'react-redux';
 
-class App extends Component {
+class Ledger extends Component {
   constructor(props) {
     super(props);
     this.state = {amount: "", to: ""};
@@ -136,4 +136,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(Ledger);

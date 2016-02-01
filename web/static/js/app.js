@@ -3,13 +3,13 @@ import Socket from "./socket"
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
+import Ledger from './components/ledger';
 import { Provider } from 'react-redux'
 
 import store from './store';
 ReactDOM.render(
 <Provider store={store}>
-<App />
+<Ledger />
 </Provider>
 , document.getElementById("root"));
 

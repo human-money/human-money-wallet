@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import App from '../components/App'
 import * as AppActions from '../actionsCreators'
 import React, { Component, PropTypes } from 'react';
 var _ = require('lodash');
