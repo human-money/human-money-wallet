@@ -4,4 +4,8 @@ defmodule MasonMoneyWallet.TransactionController do
   def index(conn, _params) do
     render conn, "index.html"
   end
+
+  def create(conn, params) do
+    IO.puts "hi"
+  end
 end

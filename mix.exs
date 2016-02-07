@@ -30,15 +30,18 @@ defmodule MasonMoneyWallet.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:phoenix, "~> 1.1.1"},
+     {:httpotion, "~> 2.1.0"},
+     {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
+     {:cowboy, "~> 1.0"},
+     {:jsx, "~> 2.8.0"},
+     {:dotenv, "~> 2.0.0"},
+     {:gettext, "~> 0.9"},
+     {:nacl, github: "tonyg/erlang-nacl"},
+     {:oauth2, "~> 0.5"},
      {:phoenix_ecto, "~> 2.0"},
-     {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"},
-     {:oauth2, "~> 0.5"},
-     {:dotenv, "~> 2.0.0"},
-     {:nacl, github: "tonyg/erlang-nacl"},
+     {:postgrex, ">= 0.0.0"},
     ]
   end
 
