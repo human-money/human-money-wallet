@@ -13,7 +13,7 @@ defmodule MasonMoneyWallet.AuthController do
     conn
     |> put_flash(:info, "You have been logged out!")
     |> configure_session(drop: true)
-    |> redirect(to: "/")
+    |> redirect(external: "http://mason.money/")
   end
 
   @doc """

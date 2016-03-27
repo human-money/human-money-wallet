@@ -15,26 +15,27 @@ defmodule MasonMoneyWallet.Router do
   end
 
   scope "/api", MasonMoneyWallet do
+    pipe_through :api
     get "/current_user", CurrentUserController, :show
     get "/users/:user_id", UserController, :show
-  end
-
-  scope "/", MasonMoneyWallet do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-    get "/profile", ProfileController, :edit
-    post "/profile", ProfileController, :update
-    get "/transactions", TransactionController, :index
   end
 
   scope "/auth", MasonMoneyWallet do
     pipe_through :browser
 
+    get "/sign_out", AuthController, :delete
     get "/:provider", AuthController, :index
     get "/:provider/callback", AuthController, :callback
-    delete "/logout", AuthController, :delete
   end
+
+  scope "/", MasonMoneyWallet do
+    pipe_through :browser
+
+    get "/", RootController, :show
+    get "/*path", HomeController, :index
+  end
+
+
 
   # Fetch the current user from the session and add it to `conn.assigns`. This
   # will allow you to have access to the current user in your views with

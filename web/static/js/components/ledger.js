@@ -32,22 +32,30 @@ class Ledger extends Component {
   }
 
   createTransaction(e){
+    e.preventDefault()
+
     let amount = parseFloat(this.state.amount) * 10000;
     let to = this.state.to;
 
-    e.preventDefault()
-    fetch(`/api/users/${to}`)
-      .then(response => response.json())
-      .then(json => {
-        let transaction = {}
-        transaction.to_public_key = json.public_key
-        transaction.to_address=`${to}$mason.money`
-        transaction.from_public_key = this.props.user.public_key
-        transaction.from_address = `${this.props.user.username}$mason.money`
-        transaction.amount = amount;
-        this.props.closeModal('pay')
-        this.props.createTransaction(transaction)
-      })
+    this.props.sendMoney({
+      to: to,
+      amount: amount
+    }).then(() => {
+      this.props.closeModal('pay')
+    })
+
+    // fetch(`/api/users/${to}`)
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     let transaction = {}
+    //     transaction.to_public_key = json.public_key
+    //     transaction.to_address=`${to}$mason.money`
+    //     transaction.from_public_key = this.props.user.public_key
+    //     transaction.from_address = `${this.props.user.username}$mason.money`
+    //     transaction.amount = amount;
+    //     this.props.closeModal('pay')
+    //     this.props.createTransaction(transaction)
+    //   })
     this.setState({amount:"", to:""})
   }
 
@@ -75,7 +83,7 @@ class Ledger extends Component {
       <header className="header">
         <div className="logo">MM</div>
         <nav>
-          <a href="/sign_out">Sign Out <i className="fa fa-sign-out"></i></a>
+          <a href="/auth/sign_out">Sign Out <i className="fa fa-sign-out"></i></a>
         </nav>
       </header>
       <div className="main">
