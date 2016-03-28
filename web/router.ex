@@ -18,6 +18,7 @@ defmodule MasonMoneyWallet.Router do
     pipe_through :api
     get "/current_user", CurrentUserController, :show
     get "/users/:user_id", UserController, :show
+    post "/transactions", TransactionController, :create
   end
 
   scope "/auth", MasonMoneyWallet do

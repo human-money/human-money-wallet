@@ -37,25 +37,11 @@ class Ledger extends Component {
     let amount = parseFloat(this.state.amount) * 10000;
     let to = this.state.to;
 
-    this.props.sendMoney({
+    var z = this.props.createTransaction({
       to: to,
       amount: amount
-    }).then(() => {
-      this.props.closeModal('pay')
     })
 
-    // fetch(`/api/users/${to}`)
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     let transaction = {}
-    //     transaction.to_public_key = json.public_key
-    //     transaction.to_address=`${to}$mason.money`
-    //     transaction.from_public_key = this.props.user.public_key
-    //     transaction.from_address = `${this.props.user.username}$mason.money`
-    //     transaction.amount = amount;
-    //     this.props.closeModal('pay')
-    //     this.props.createTransaction(transaction)
-    //   })
     this.setState({amount:"", to:""})
   }
 
@@ -134,6 +120,18 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchUser: () => dispatch(fetchUser()),
     fetchTransactions: () => dispatch(fetchTransactions()),
+    // fetch(`/api/users/${to}`)
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     let transaction = {}
+    //     transaction.to_public_key = json.public_key
+    //     transaction.to_address=`${to}$mason.money`
+    //     transaction.from_public_key = this.props.user.public_key
+    //     transaction.from_address = `${this.props.user.username}$mason.money`
+    //     transaction.amount = amount;
+    //     this.props.closeModal('pay')
+    //     this.props.createTransaction(transaction)
+    //   })
     addTransaction: (params) => dispatch(addTransaction(params)),
     createTransaction: (params) => dispatch(createTransaction(params)),
     openModal: (params) => dispatch(openModal(params)),

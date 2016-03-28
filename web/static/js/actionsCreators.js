@@ -26,25 +26,18 @@ function increment() {
 
 function createTransaction(params) {
   return (dispatch, getState) => {
-    ProtoBuf.loadProtoFile("/mason_money.proto", function(err, builder) {
-      builder.build()
-      let Transaction = builder.result.protobufs.Transaction
-      let t = new Uint8Array((new Transaction(params)).encode().buffer);
-
-      params.signature = nacl.util.encodeBase64(nacl.sign.detached(t,
-        new TextEncoder('utf-8').encode(getState().user.private_key)
-        ));
-      request(`${server}/transactions`,
-        {
-          method: "post",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(params)
-        });
-    });
-  }
+    request(`/api/transactions`,
+      {
+        method: "post",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    }).then((stuff) => {
+      dispatch(closeModal('pay'))
+    })
+  };
 }
 
 
