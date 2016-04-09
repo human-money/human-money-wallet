@@ -3,8 +3,6 @@ import React from 'react';
 
 export default class Transaction extends React.Component {
   render() {
-    console.log(this.props)
-    // console.log(this.props.current_user.id)
     if(this.props.from_user_id == this.props.current_user.id) {
       return (
       <li className="debit">

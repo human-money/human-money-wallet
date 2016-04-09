@@ -2,7 +2,7 @@ defmodule Wallet.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Wallet.RoomChannel
+  channel "update", Wallet.TransactionChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

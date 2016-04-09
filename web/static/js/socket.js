@@ -8,9 +8,9 @@ let socket = new Socket(`/socket`, {params: {token: window.userToken}})
 
 socket.connect()
 
-let channel = socket.channel("transactions:*", {})
+let channel = socket.channel("update", {})
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
-  channel.on("new:transaction", resp => {store.dispatch(addTransaction(resp))})
+  channel.on("transaction:add", resp => {store.dispatch(addTransaction(resp))})
 export default socket

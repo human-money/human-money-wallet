@@ -1,6 +1,7 @@
 defmodule Wallet.TransactionController do
   use Wallet.Web, :controller
   alias Wallet.Transaction
+  alias Wallet.TransactionView
   alias Wallet.Services.TransactionCreator
   alias Wallet.ChangesetView
 
@@ -17,6 +18,11 @@ defmodule Wallet.TransactionController do
 
     case TransactionCreator.create(current_user_id, transaction_params) do
       {:ok, transaction} ->
+        Wallet.Endpoint.broadcast!(
+          "update",
+          "transaction:add",
+          TransactionView.render("show.json", %{data: transaction})
+        )
         conn
         |> send_resp(:created, "")
       {:error, changeset} ->

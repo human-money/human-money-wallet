@@ -6,6 +6,10 @@ defmodule Wallet.TransactionView do
     %{transactions: render_many(data, Wallet.TransactionView, "transaction.json")}
   end
 
+  def render("show.json", %{data: data}) do
+    %{transaction: render_one(data, Wallet.TransactionView, "transaction.json")}
+  end
+
   def render("transaction.json", %{transaction: transaction}) do
     transaction
     |> Map.take([
