@@ -2,6 +2,7 @@ defmodule Wallet.TransactionController do
   use Wallet.Web, :controller
   alias Wallet.Transaction
   alias Wallet.Services.TransactionCreator
+  alias Wallet.ChangesetView
 
   def index(conn, params) do
     query = from t in Transaction,
@@ -10,18 +11,18 @@ defmodule Wallet.TransactionController do
     render conn, "index.json", data: Repo.all(query)
   end
 
-  def create(conn, params) do
+  def create(conn, transaction_params) do
     conn = fetch_session(conn)
     current_user_id = get_session(conn, :current_user_id)
-    changeset = Transaction.changeset(%Transaction{from_user_id: current_user_id}, params)
-    if changeset.valid? do
-      t = Wallet.Repo.insert! changeset
-      conn
-        |> send_resp(201, "")
-    else
-      conn
+
+    case TransactionCreator.create(current_user_id, transaction_params) do
+      {:ok, transaction} ->
+        conn
+        |> send_resp(:created, "")
+      {:error, changeset} ->
+        conn
         |> put_status(:unprocessable_entity)
-        |> render(Wallet.ChangesetView, "error.json", changeset)
-    end
-  end
+        |> render(ChangesetView, "error.json", changeset: changeset)
+    end 
+ end
 end

@@ -4,7 +4,7 @@ defmodule Wallet.Transaction do
   schema "transactions" do
     belongs_to :from_bitcoin_address, :integer
     belongs_to :from_mason_money_address, :integer
-    belongs_to :from_user, :integer
+    belongs_to :from_user, Wallet.User
     belongs_to :to_bitcoin_address, :integer
     belongs_to :to_mason_money_address, :integer
     belongs_to :to_giftcard, :integer

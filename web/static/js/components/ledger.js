@@ -65,7 +65,10 @@ class Ledger extends Component {
       transactions.push(
         React.createElement(
           Transaction,
-          Object.assign(transaction, {key: transaction.id})
+          Object.assign(transaction, {
+            key: transaction.id,
+            current_user: this.props.user,
+          })
         )
       )
     })
