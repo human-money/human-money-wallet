@@ -1,8 +1,8 @@
-defmodule MasonMoneyWallet.Mixfile do
+defmodule Wallet.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :mason_money_wallet,
+    [app: :wallet,
      version: "0.0.1",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -17,7 +17,7 @@ defmodule MasonMoneyWallet.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {MasonMoneyWallet, []},
+    [mod: {Wallet, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :oauth2]]
   end
 

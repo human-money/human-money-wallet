@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.AuthController do
-  use MasonMoneyWallet.Web, :controller
+defmodule Wallet.AuthController do
+  use Wallet.Web, :controller
 
   @doc """
   This action is reached via `/auth/:provider` and redirects to the OAuth2 provider
@@ -29,19 +29,19 @@ defmodule MasonMoneyWallet.AuthController do
     # Request the user's data with the access token
     oauth_user = get_user!(provider, token)
 
-    if Repo.get_by(MasonMoneyWallet.User, facebook_id: oauth_user[:id]) do
-      user = Repo.get_by(MasonMoneyWallet.User, facebook_id: oauth_user[:id])
+    if Repo.get_by(Wallet.User, facebook_id: oauth_user[:id]) do
+      user = Repo.get_by(Wallet.User, facebook_id: oauth_user[:id])
       conn
         |> put_session(:current_user_id, user.id)
         |> redirect(to: "/transactions")
     else
-      user = %MasonMoneyWallet.User{}
+      user = %Wallet.User{}
       {:nacl_box_keypair, public_key, private_key} = :nacl.box_keypair()
 
       keys = %{private_key: String.downcase(Base.encode16(private_key)), public_key: String.downcase(Base.encode16(public_key))}
       user = Map.merge(user, keys)
       user = Map.merge(user, %{facebook_id: oauth_user[:id]})
-      user = MasonMoneyWallet.Repo.insert! user
+      user = Wallet.Repo.insert! user
 
       conn
       |> put_session(:current_user_id, user.id)

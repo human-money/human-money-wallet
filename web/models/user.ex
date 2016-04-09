@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.User do
-  use MasonMoneyWallet.Web, :model
+defmodule Wallet.User do
+  use Wallet.Web, :model
 
   schema "users" do
     field :username, :string

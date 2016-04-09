@@ -1,4 +1,4 @@
-defmodule MasonMoneyWallet.ErrorHelpers do
+defmodule Wallet.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -26,10 +26,10 @@ defmodule MasonMoneyWallet.ErrorHelpers do
     #
     #     dngettext "errors", "1 file", "%{count} files", count
     #
-    Gettext.dngettext(MasonMoneyWallet.Gettext, "errors", msg, msg, opts[:count], opts)
+    Gettext.dngettext(Wallet.Gettext, "errors", msg, msg, opts[:count], opts)
   end
 
   def translate_error(msg) do
-    Gettext.dgettext(MasonMoneyWallet.Gettext, "errors", msg)
+    Gettext.dgettext(Wallet.Gettext, "errors", msg)
   end
 end

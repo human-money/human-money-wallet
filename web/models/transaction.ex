@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.Transaction do
-  use MasonMoneyWallet.Web, :model
+defmodule Wallet.Transaction do
+  use Wallet.Web, :model
 
   schema "transactions" do
     belongs_to :from_bitcoin_address, :integer

@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello MasonMoneyWallet!</title>
+    <title>Hello Wallet!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <meta property="mason_money_node_address" content="<%= Application.get_env(:mason_money_wallet, :mason_money_node_address) %>" />
-    <meta property="mason_money_socket_address" content="<%= Application.get_env(:mason_money_wallet, :mason_money_socket_address) %>" />
+    <meta property="mason_money_node_address" content="<%= Application.get_env(:wallet, :mason_money_node_address) %>" />
+    <meta property="mason_money_socket_address" content="<%= Application.get_env(:wallet, :mason_money_socket_address) %>" />
   </head>
 
   <body>

@@ -1,7 +1,7 @@
-defmodule MasonMoneyWallet.TransactionTest do
-  use MasonMoneyWallet.ModelCase
+defmodule Wallet.TransactionTest do
+  use Wallet.ModelCase
 
-  alias MasonMoneyWallet.Transaction
+  alias Wallet.Transaction
 
   @valid_attrs %{amount: 42, from_id: 42, to_id: 42}
   @invalid_attrs %{}

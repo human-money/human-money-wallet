@@ -1,4 +1,4 @@
-defmodule MasonMoneyWallet.Repo.Migrations.CreateTransaction do
+defmodule Wallet.Repo.Migrations.CreateTransaction do
   use Ecto.Migration
 
   def change do

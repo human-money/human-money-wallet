@@ -1,4 +1,4 @@
-defmodule MasonMoneyWallet.ConnCase do
+defmodule Wallet.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,20 +20,20 @@ defmodule MasonMoneyWallet.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias MasonMoneyWallet.Repo
+      alias Wallet.Repo
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
 
-      import MasonMoneyWallet.Router.Helpers
+      import Wallet.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint MasonMoneyWallet.Endpoint
+      @endpoint Wallet.Endpoint
     end
   end
 
   setup tags do
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(MasonMoneyWallet.Repo, [])
+      Ecto.Adapters.SQL.restart_test_transaction(Wallet.Repo, [])
     end
 
     {:ok, conn: Phoenix.ConnTest.conn()}

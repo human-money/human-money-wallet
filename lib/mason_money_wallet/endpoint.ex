@@ -1,14 +1,14 @@
-defmodule MasonMoneyWallet.Endpoint do
-  use Phoenix.Endpoint, otp_app: :mason_money_wallet
+defmodule Wallet.Endpoint do
+  use Phoenix.Endpoint, otp_app: :wallet
 
-  socket "/socket", MasonMoneyWallet.UserSocket
+  socket "/socket", Wallet.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :mason_money_wallet, gzip: false,
+    at: "/", from: :wallet, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt mason_money.proto)
 
   # Code reloading can be explicitly enabled under the
@@ -32,8 +32,8 @@ defmodule MasonMoneyWallet.Endpoint do
 
   plug Plug.Session,
     store: :cookie,
-    key: "_mason_money_wallet_key",
+    key: "_wallet_key",
     signing_salt: "l6t0AJsp"
 
-  plug MasonMoneyWallet.Router
+  plug Wallet.Router
 end

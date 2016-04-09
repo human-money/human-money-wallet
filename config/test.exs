@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :mason_money_wallet, MasonMoneyWallet.Endpoint,
+config :wallet, Wallet.Endpoint,
   http: [port: 4001],
   server: false
 
@@ -10,10 +10,10 @@ config :mason_money_wallet, MasonMoneyWallet.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :mason_money_wallet, MasonMoneyWallet.Repo,
+config :wallet, Wallet.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "mason_money_wallet_test",
+  database: "wallet_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

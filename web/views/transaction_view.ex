@@ -1,9 +1,9 @@
-defmodule MasonMoneyWallet.TransactionView do
-  use MasonMoneyWallet.Web, :view
+defmodule Wallet.TransactionView do
+  use Wallet.Web, :view
   @attributes ~W(id)
 
   def render("index.json", %{data: data}) do
-    %{transactions: render_many(data, MasonMoneyWallet.TransactionView, "transaction.json")}
+    %{transactions: render_many(data, Wallet.TransactionView, "transaction.json")}
   end
 
   def render("transaction.json", %{transaction: transaction}) do

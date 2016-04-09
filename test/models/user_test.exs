@@ -1,7 +1,7 @@
-defmodule MasonMoneyWallet.UserTest do
-  use MasonMoneyWallet.ModelCase
+defmodule Wallet.UserTest do
+  use Wallet.ModelCase
 
-  alias MasonMoneyWallet.User
+  alias Wallet.User
 
   @valid_attrs %{facebook_id: "some content", private_key: "some content", username: "some content"}
   @invalid_attrs %{}

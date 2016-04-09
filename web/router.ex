@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.Router do
-  use MasonMoneyWallet.Web, :router
+defmodule Wallet.Router do
+  use Wallet.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,7 +14,7 @@ defmodule MasonMoneyWallet.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", MasonMoneyWallet do
+  scope "/api", Wallet do
     pipe_through :api
     get "/current_user", CurrentUserController, :show
     get "/users/:user_id", UserController, :show
@@ -22,7 +22,7 @@ defmodule MasonMoneyWallet.Router do
     get "/transactions", TransactionController, :index
   end
 
-  scope "/auth", MasonMoneyWallet do
+  scope "/auth", Wallet do
     pipe_through :browser
 
     get "/sign_out", AuthController, :delete
@@ -30,7 +30,7 @@ defmodule MasonMoneyWallet.Router do
     get "/:provider/callback", AuthController, :callback
   end
 
-  scope "/", MasonMoneyWallet do
+  scope "/", Wallet do
     pipe_through :browser
 
     get "/", RootController, :show

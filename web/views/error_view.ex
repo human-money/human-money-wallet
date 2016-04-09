@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.ErrorView do
-  use MasonMoneyWallet.Web, :view
+defmodule Wallet.ErrorView do
+  use Wallet.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

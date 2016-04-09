@@ -1,11 +1,11 @@
-defmodule MasonMoneyWallet.Gettext do
+defmodule Wallet.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](http://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import MasonMoneyWallet.Gettext
+      import Wallet.Gettext
 
       # Simple translation
       gettext "Here is the string to translate"
@@ -20,5 +20,5 @@ defmodule MasonMoneyWallet.Gettext do
 
   See the [Gettext Docs](http://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :mason_money_wallet
+  use Gettext, otp_app: :wallet
 end

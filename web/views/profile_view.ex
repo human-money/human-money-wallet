@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.ProfileView do
-  use MasonMoneyWallet.Web, :view
-  alias MasonMoneyWallet.Router
-  import MasonMoneyWallet.Router.Helpers
+defmodule Wallet.ProfileView do
+  use Wallet.Web, :view
+  alias Wallet.Router
+  import Wallet.Router.Helpers
 end

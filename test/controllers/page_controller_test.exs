@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.PageControllerTest do
-  use MasonMoneyWallet.ConnCase
+defmodule Wallet.PageControllerTest do
+  use Wallet.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

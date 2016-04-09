@@ -1,5 +1,5 @@
-defmodule MasonMoneyWallet.CurrentUserView do
-  use MasonMoneyWallet.Web, :view
+defmodule Wallet.CurrentUserView do
+  use Wallet.Web, :view
   @attributes ~W(id)
 
   def render("show.json", %{data: data}) do

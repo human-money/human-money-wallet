@@ -6,12 +6,12 @@
 use Mix.Config
 
 # Configures the endpoint
-config :mason_money_wallet, MasonMoneyWallet.Endpoint,
+config :wallet, Wallet.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   secret_key_base: "yLFogp8pHGu0a8yo9RLc9MnhbCR8J5h6yavr7f5Pb+QZLLmkrs+M2zwwSu0koOGu",
   render_errors: [accepts: ~w(html json)],
-  pubsub: [name: MasonMoneyWallet.PubSub,
+  pubsub: [name: Wallet.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

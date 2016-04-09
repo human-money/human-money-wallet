@@ -1,3 +1,3 @@
-defmodule MasonMoneyWallet.LayoutViewTest do
-  use MasonMoneyWallet.ConnCase, async: true
+defmodule Wallet.LayoutViewTest do
+  use Wallet.ConnCase, async: true
 end
