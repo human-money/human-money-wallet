@@ -4,7 +4,7 @@ import {addTransaction} from "./actionsCreators";
 import $ from 'jquery';
 
 let server = $('meta[property="mason_money_socket_address"]').attr('content');
-let socket = new Socket(`${server}/socket`, {params: {token: window.userToken}})
+let socket = new Socket(`/socket`, {params: {token: window.userToken}})
 
 socket.connect()
 

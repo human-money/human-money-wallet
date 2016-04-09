@@ -19,6 +19,7 @@ defmodule MasonMoneyWallet.Router do
     get "/current_user", CurrentUserController, :show
     get "/users/:user_id", UserController, :show
     post "/transactions", TransactionController, :create
+    get "/transactions", TransactionController, :index
   end
 
   scope "/auth", MasonMoneyWallet do

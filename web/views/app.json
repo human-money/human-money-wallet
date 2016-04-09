@@ -1,0 +1,28 @@
+{
+  "name": "Mason Money Wallet",
+  "description": "Mason Money is stable cryptocurrency built for everyone",
+  "website": "http://wallet.mason.money/",
+  "scripts": {
+    "postdeploy": "mix ecto.migrate"
+  },
+  "env": {
+    "HOST": {
+      "description": "Hostname"
+    },
+    "MASON_MONEY_NODE_ADDRESS": {
+      "description": "The address of the Mason Money node use as a relay",
+      "value": "ws://testnet1.mason.money/"
+    },
+    "FACEBOOK_CLIENT_ID": {
+      description: "Facebook app client ID"
+    },
+    "FACEBOOK_CLIENT_SECRET": {
+      description: "Facebook app client secret"
+    }
+  },
+  "buildpacks": [
+    {"url": "https://github.com/mason-money/heroku-buildpack-libsodium"},
+    {"url": "https://github.com/mason-money/heroku-buildpack-elixir"},
+    {"url": "https://github.com/gjaldon/phoenix-static-buildpack"}
+  ]
+}

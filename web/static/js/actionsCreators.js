@@ -29,6 +29,7 @@ function createTransaction(params) {
     request(`/api/transactions`,
       {
         method: "post",
+        credentials: 'same-origin',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -70,7 +71,12 @@ function receiveUser(user) {
 
 function fetchTransactions() {
   return dispatch => {
-    return request(`${server}/transactions`)
+    return request(
+      `/api/transactions`,
+      {
+        credentials: 'same-origin'
+      }
+      )
       .then(json => dispatch(receiveTransactions(json.transactions)))
   }
 }

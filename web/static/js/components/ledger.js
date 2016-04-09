@@ -47,10 +47,10 @@ class Ledger extends Component {
 
   balance() {
     let bal = _.sumBy(this.props.transactions, (transaction) => {
-      if(transaction.to_public_key == this.props.user.public_key) {
+      if(transaction.to_user_id == this.props.user.id) {
         return (transaction.amount / 10000);
       } else {
-        return -((transaction.amount / 10000)+0.001);
+        return -(transaction.amount / 10000);
       }
     });
 
@@ -62,8 +62,14 @@ class Ledger extends Component {
   render() {
     let transactions = [];
     this.props.transactions.forEach((transaction, index) => {
-    transactions.push(<Transaction key={transaction.id} amount={transaction.amount/10000} to={transaction.to_address} from={transaction.from_address}  createdAt={transaction.inserted_at} />)
+      transactions.push(
+        React.createElement(
+          Transaction,
+          Object.assign(transaction, {key: transaction.id})
+        )
+      )
     })
+  
     return (
     <div className="inner">
       <header className="header">
