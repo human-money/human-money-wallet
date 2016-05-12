@@ -6,11 +6,11 @@
   }
 
   .credit i {
-    color: #468847;
+    color: $success-color;
   }
 
   .debit i {
-    color: #d9534f;
+    color: $failure-color;
   }
 
   .date {

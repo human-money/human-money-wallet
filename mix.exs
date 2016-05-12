@@ -4,6 +4,7 @@ defmodule Wallet.Mixfile do
   def project do
     [app: :wallet,
      version: "0.0.1",
+     description: "Mason money ie a currency built for everyone",
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -18,7 +19,7 @@ defmodule Wallet.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Wallet, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :oauth2]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :oauth2, :httpotion, :libsodium]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,12 +37,12 @@ defmodule Wallet.Mixfile do
      {:jsx, "~> 2.8.0"},
      {:dotenv, "~> 2.0.0"},
      {:gettext, "~> 0.9"},
-     {:nacl, github: "tonyg/erlang-nacl"},
+     {:libsodium, github: "potatosalad/erlang-libsodium"},
      {:oauth2, "~> 0.5"},
      {:phoenix_ecto, "~> 2.0"},
      {:phoenix_html, "~> 2.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:postgrex, ">= 0.0.0"},
+     {:postgrex, ">= 0.0.0"}
     ]
   end
 

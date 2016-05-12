@@ -2,14 +2,14 @@ defmodule Wallet.Transaction do
   use Wallet.Web, :model
 
   schema "transactions" do
-    belongs_to :from_bitcoin_address, :integer
-    belongs_to :from_mason_money_address, :integer
-    belongs_to :from_user, Wallet.User
-    belongs_to :to_bitcoin_address, :integer
-    belongs_to :to_mason_money_address, :integer
-    belongs_to :to_giftcard, :integer
-    belongs_to :to_twitter, :integer
-    belongs_to :to_user, :integer
+    belongs_to :source_bitcoin_address, :integer
+    belongs_to :source_mason_money_address, :integer
+    belongs_to :source_user, Wallet.User
+    belongs_to :destination_bitcoin_address, :integer
+    belongs_to :destination_mason_money_address, :integer
+    belongs_to :destination_giftcard, :integer
+    belongs_to :destination_twitter, :integer
+    belongs_to :destination_user, :integer
     field :amount, :integer
 
     timestamps

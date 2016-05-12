@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :wallet, Wallet.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
+  url: [host: System.get_env("SOME_APP_SSL_KEY_PATH"), port: 80],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
@@ -64,10 +64,16 @@ config :logger, level: :info
 # which should be versioned separately.
 config :wallet, :mason_money_node_address, System.get_env("MASON_MONEY_NODE_ADDRESS")
 config :wallet, :mason_money_socket_address, System.get_env("MASON_MONEY_SOCKET_ADDRESS")
+config :wallet, :block_io_api_key, System.get_env("BLOCK_IO_API_KEY")
+config :wallet, :block_io_pin, System.get_env("BLOCK_IO_PIN")
+config :wallet, :bitcoin_conversion_rate, elem(Float.parse(System.get_env("BITCOIN_CONVERSION_RATE")), 0)
+
 config :wallet, Wallet.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
+  ssl: true,
   pool_size: 20
+
 
 config :wallet, Facebook,
   client_id: System.get_env("FACEBOOK_CLIENT_ID"),

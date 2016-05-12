@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+eval $(docker-machine env -u)
+docker build -t masonforest/mason-money-wallet .
+docker push masonforest/mason-money-wallet
+eval $(docker-machine env mm)
+docker pull masonforest/mason-money-wallet
+docker stop mason-money-wallet
+docker rm mason-money-wallet
+docker run -p 80:5000 --restart=always --name mason-money-wallet --env-file=.env.production -d masonforest/mason-money-wallet

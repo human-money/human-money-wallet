@@ -17,7 +17,9 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #477dca;
+$blue: #298eea;
+$red: #ed4f32;
+$green: #15cd72;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #eee;
@@ -25,7 +27,8 @@ $light-gray: #eee;
 // Font Colors
 $base-font-color: $dark-gray;
 $action-color: $blue;
-
+$success-color: $green;
+$failure-color: $red;
 // Border
 $base-border-color: $light-gray;
 $base-border: 1px solid $base-border-color;

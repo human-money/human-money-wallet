@@ -14,14 +14,14 @@ defmodule Wallet.TransactionView do
     transaction
     |> Map.take([
       :id,
-      :from_bitcoin_address_id,
-      :from_mason_money_address_id,
-      :from_user_id,
-      :to_bitcoin_address_id,
-      :to_mason_money_address_id,
-      :to_giftcard_id,
-      :to_twitter_id,
-      :to_user_id,
+      :source_bitcoin_address_id,
+      :source_mason_money_address_id,
+      :source_user_id,
+      :destination_bitcoin_address_id,
+      :destination_mason_money_address_id,
+      :destination_giftcard_id,
+      :destination_twitter_id,
+      :destination_user_id,
       :amount,
       :inserted_at
     ])

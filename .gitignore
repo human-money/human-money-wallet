@@ -3,6 +3,7 @@
 /db
 /deps
 /*.ez
+.env*
 
 # Generate on crash by the VM
 erl_crash.dump
@@ -25,3 +26,4 @@ erl_crash.dump
 /config/dev.exs
 coinbase.ex
 .env
+.env.production

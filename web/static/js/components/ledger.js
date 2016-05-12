@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 class Ledger extends Component {
   constructor(props) {
     super(props);
-    this.state = {amount: "", to: ""};
+    this.state = {amount: "", destination: ""};
   }
 
   componentDidMount() {
@@ -27,27 +27,27 @@ class Ledger extends Component {
     this.setState({amount: event.target.value});
   }
 
-  toChanged(event) {
-    this.setState({to: event.target.value});
+  destinationChanged(event) {
+    this.setState({destination: event.target.value});
   }
 
   createTransaction(e){
     e.preventDefault()
 
     let amount = parseFloat(this.state.amount) * 10000;
-    let to = this.state.to;
+    let destination = this.state.destination;
 
     var z = this.props.createTransaction({
-      to: to,
+      destination: destination,
       amount: amount
     })
 
-    this.setState({amount:"", to:""})
+    this.setState({amount:"", destination:""})
   }
 
   balance() {
     let bal = _.sumBy(this.props.transactions, (transaction) => {
-      if(transaction.to_user_id == this.props.user.id) {
+      if(transaction.destination_user_id == this.props.user.id) {
         return (transaction.amount / 10000);
       } else {
         return -(transaction.amount / 10000);
@@ -76,7 +76,7 @@ class Ledger extends Component {
     return (
     <div className="inner">
       <header className="header">
-        <div className="logo">MM</div>
+        <div className="logo">HM</div>
         <nav>
           <a href="/auth/sign_out">Sign Out <i className="fa fa-sign-out"></i></a>
         </nav>
@@ -85,9 +85,6 @@ class Ledger extends Component {
         <div className="sidebar">
           <button onClick={(e) => this.props.openModal("pay")}>
             Send Money
-          </button>
-          <button onClick={(e) => this.props.openModal("request")}>
-            Request Money
           </button>
           <div className="balance"><strong>Balance</strong> ${this.balance()}</div>
         </div>
@@ -101,7 +98,7 @@ class Ledger extends Component {
       <Modal title="Send Money" id="pay">
         <form onSubmit={this.createTransaction.bind(this)} >
           <label>Pay to:</label>
-          <input  placeholder="Username, etc..." value={this.state.to} onChange={this.toChanged.bind(this)} />
+          <input  placeholder="Username, etc..." value={this.state.destination} onChange={this.destinationChanged.bind(this)} />
           <span>Username, @twitter_handle, Email, Phone or Mason Money Address</span>
           <br />
           <label>Amount</label>
@@ -129,12 +126,12 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchUser: () => dispatch(fetchUser()),
     fetchTransactions: () => dispatch(fetchTransactions()),
-    // fetch(`/api/users/${to}`)
+    // fetch(`/api/users/${destination}`)
     //   .then(response => response.json())
     //   .then(json => {
     //     let transaction = {}
-    //     transaction.to_public_key = json.public_key
-    //     transaction.to_address=`${to}$mason.money`
+    //     transaction.destination_public_key = json.public_key
+    //     transaction.destination_address=`${destination}$mason.money`
     //     transaction.from_public_key = this.props.user.public_key
     //     transaction.from_address = `${this.props.user.username}$mason.money`
     //     transaction.amount = amount;

@@ -1,3 +1,4 @@
+import { browserHistory } from 'react-router'
 import ProtoBuf from 'protobufjs';
 import nacl from 'tweetnacl';
 import request from './request';
@@ -48,6 +49,23 @@ function addTransaction(params) {
   })
 }
 
+function createAccount(params) {
+  return (dispatch, getState) => {
+    request(`/api/profile`,
+      {
+        method: "put",
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params)
+    }).then(() => {
+      browserHistory.push('/transactions')
+    })
+  };
+}
+
 function receiveErrors(errors) {
   return {
     type: 'RECIEVE_ERRORS',
@@ -70,7 +88,7 @@ function receiveUser(user) {
 }
 
 function fetchTransactions() {
-  return dispatch => {
+  return (dispatch, getState) => {
     return request(
       `/api/transactions`,
       {
@@ -92,6 +110,7 @@ export {
   addTransaction,
   receiveErrors,
   createTransaction,
+  createAccount,
   fetchTransactions,
   fetchUser,
   openModal,

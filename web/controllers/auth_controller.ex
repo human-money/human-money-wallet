@@ -13,7 +13,7 @@ defmodule Wallet.AuthController do
     conn
     |> put_flash(:info, "You have been logged out!")
     |> configure_session(drop: true)
-    |> redirect(external: "http://mason.money/")
+    |> redirect(external: "http://human.money/")
   end
 
   @doc """
@@ -36,7 +36,7 @@ defmodule Wallet.AuthController do
         |> redirect(to: "/transactions")
     else
       user = %Wallet.User{}
-      {:nacl_box_keypair, public_key, private_key} = :nacl.box_keypair()
+      {public_key, private_key} = :libsodium_crypto_sign_ed25519.keypair()
 
       keys = %{private_key: String.downcase(Base.encode16(private_key)), public_key: String.downcase(Base.encode16(public_key))}
       user = Map.merge(user, keys)

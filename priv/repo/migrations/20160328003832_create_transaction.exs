@@ -3,14 +3,14 @@ defmodule Wallet.Repo.Migrations.CreateTransaction do
 
   def change do
     create table(:transactions) do
-      add :from_bitcoin_address_id, :integer
-      add :from_mason_money_address_id, :integer
-      add :from_user_id, :integer
-      add :to_bitcoin_address_id, :integer
-      add :to_mason_money_address_id, :integer
-      add :to_giftcard_id, :integer
-      add :to_twitter_id, :integer
-      add :to_user_id, :integer
+      add :source_bitcoin_address_id, :integer
+      add :source_mason_money_address_id, :integer
+      add :source_user_id, :integer
+      add :destination_bitcoin_address_id, :integer
+      add :destination_mason_money_address_id, :integer
+      add :destination_giftcard_id, :integer
+      add :destination_twitter_id, :integer
+      add :destination_user_id, :integer
       add :amount, :integer
 
       timestamps

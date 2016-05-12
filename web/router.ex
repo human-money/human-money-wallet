@@ -16,6 +16,7 @@ defmodule Wallet.Router do
 
   scope "/api", Wallet do
     pipe_through :api
+    put "/profile", ProfileController, :update
     get "/current_user", CurrentUserController, :show
     get "/users/:user_id", UserController, :show
     post "/transactions", TransactionController, :create
